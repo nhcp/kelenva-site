@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+<BaseLayout title={`${project.data.title} — Nazmul`}>
+  <article>
+    <h1>{project.data.title}</h1>
+    <p class="summary">{project.data.summary}</p>
+
+    <div class="meta">
+      <div class="stack">
+        {project.data.stack.map((s) => <span class="chip">{s}</span>)}
+      </div>
+      <div class="links">
+        {project.data.repoUrl && <a href={project.data.repoUrl}>Repository →</a>}
+        {project.data.demoUrl && <a href={project.data.demoUrl}>Live Demo →</a>}
+      </div>
+    </div>
+
+    {project.data.coverImage && <img src={project.data.coverImage} alt={project.data.title} />}
+
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .summary { color: #555; font-size: 1.1rem; }
+  .meta { display: flex; justify-content: space-between; align-items: center; margin: 1.5rem 0; flex-wrap: wrap; gap: 1rem; }
+  .stack { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .chip { background: #f0f0f0; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.8rem; }
+  .links a { margin-left: 1rem; text-decoration: none; color: #0055cc; }
+  img { width: 100%; border-radius: 8px; margin: 1.5rem 0; }
+  .content { line-height: 1.7; }
+</style>

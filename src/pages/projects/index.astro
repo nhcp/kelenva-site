@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectGrid from '../../components/ProjectGrid.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+---
+<BaseLayout title="Projects — Nazmul">
+  <h1>Projects</h1>
+  <ProjectGrid projects={allProjects} />
+</BaseLayout>

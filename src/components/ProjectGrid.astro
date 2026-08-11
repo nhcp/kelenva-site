@@ -1,0 +1,31 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+}
+const { projects } = Astro.props;
+const sorted = projects.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+<div class="grid">
+  {sorted.map((project) => (
+    <ProjectCard
+      title={project.data.title}
+      summary={project.data.summary}
+      tags={project.data.tags}
+      slug={project.slug}
+      coverImage={project.data.coverImage}
+    />
+  ))}
+</div>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+</style>

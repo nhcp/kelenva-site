@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  tags: string[];
+  slug: string;
+  coverImage?: string;
+}
+const { title, summary, tags, slug, coverImage } = Astro.props;
+---
+<a href={`/projects/${slug}`} class="project-card">
+  {coverImage && <img src={coverImage} alt={title} />}
+  <h3>{title}</h3>
+  <p>{summary}</p>
+  <div class="tags">
+    {tags.map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+</a>
+
+<style>
+  .project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  }
+  .project-card img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+  .tag {
+    font-size: 0.75rem;
+    background: #f0f0f0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+</style>

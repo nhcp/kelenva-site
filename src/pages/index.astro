@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const featured = allProjects.filter((p) => p.data.featured);
+---
+<BaseLayout title="Nazmul — DevOps & Cloud Engineer">
+  <section class="hero">
+    <h1>Nazmul</h1>
+    <p class="subtitle">DevOps & Cloud Engineer — Docker · Kubernetes · Terraform · AWS</p>
+    <div class="cta">
+      <a href="/cv.pdf" class="btn primary">Download CV</a>
+      <a href="/projects" class="btn">View Projects</a>
+      <a href="https://github.com/nhcp" class="btn">GitHub</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Featured Projects</h2>
+    <ProjectGrid projects={featured} />
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 1rem;
+  }
+  .subtitle {
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+  .cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: inherit;
+  }
+  .btn.primary {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+  }
+</style>

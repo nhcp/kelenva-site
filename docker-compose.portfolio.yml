@@ -1,0 +1,17 @@
+services:
+  kelenva-site:
+    image: nhcpde147/kelenva-site:latest
+    container_name: kelenva-site
+    restart: unless-stopped
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kelenva.rule=Host(`kelenva.com`) || Host(`www.kelenva.com`)"
+      - "traefik.http.routers.kelenva.entrypoints=websecure"
+      - "traefik.http.routers.kelenva.tls=true"
+      - "traefik.http.services.kelenva.loadbalancer.server.port=80"
+
+networks:
+  web:
+    external: true
