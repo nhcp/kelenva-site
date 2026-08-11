@@ -1,0 +1,6 @@
+Replace this file with your real CV, saved exactly as: cv.pdf
+in this same folder (public/cv.pdf).
+
+The homepage and About page both link to /cv.pdf — once you add
+the real file, that button works immediately on the next deploy.
+This placeholder file is safe to delete once cv.pdf is in place.

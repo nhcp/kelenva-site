@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="About — Nazmul">
+  <h1 class="page-title"><span class="prompt">$</span> cat about.md</h1>
+
+  <div class="about-body">
+    <p>
+      I'm Nazmul, based in Bavaria, Germany, working toward a role as a
+      DevOps or Cloud Engineer. I'm currently completing an Ironhack DevOps
+      bootcamp covering Linux, Docker, Terraform, Ansible, and AWS —
+      building and deploying real infrastructure rather than just studying
+      it in isolation.
+    </p>
+
+    <p>
+      Outside coursework, I build and operate
+      <a href="https://flinktrade.com">FlinkTrade</a>, a personal algorithmic
+      trading platform — Python/Flask on Kraken Futures, deployed on a
+      self-managed Hetzner VPS with Gunicorn, Nginx, and systemd, behind
+      Cloudflare. It runs a strict research discipline: every strategy goes
+      through walk-forward validation with pre-registered, git-enforced
+      pass/fail gates before it's allowed anywhere near live capital, and
+      every result — pass or kill — gets logged permanently. That
+      discipline matters more to me than any single result: it's the same
+      instinct that makes good infrastructure reliable.
+    </p>
+
+    <p>
+      This site itself is part of that same practice: an Astro static
+      site, containerized with Docker, deployed via GitHub Actions to a
+      Traefik-fronted Hetzner box, isolated from my production trading
+      infrastructure by design.
+    </p>
+
+    <h2 class="section-heading"># currently</h2>
+    <ul class="status-list">
+      <li><span class="status-dot"></span>Finishing the Ironhack DevOps bootcamp</li>
+      <li><span class="status-dot"></span>Building out this portfolio and its project writeups</li>
+      <li><span class="status-dot"></span>Job-hunting for DevOps / Cloud Engineer roles in Germany</li>
+    </ul>
+
+    <div class="cta-row">
+      <a href="/cv.pdf" class="cmd-btn primary">./download-cv.sh</a>
+      <a href="https://github.com/nhcp" class="cmd-btn">ssh github.com/nhcp</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .prompt {
+    color: var(--accent-teal);
+    margin-right: 0.5rem;
+  }
+  .about-body {
+    max-width: 65ch;
+    line-height: 1.75;
+  }
+  .about-body a {
+    color: var(--accent-amber);
+  }
+  .section-heading {
+    font-size: 1rem;
+    color: var(--accent-teal);
+    margin-top: 2.5rem;
+  }
+  .status-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 2.5rem;
+  }
+  .status-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ADE80;
+    flex-shrink: 0;
+  }
+  .cta-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .cmd-btn {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 0.6rem 1.1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    background: var(--bg-surface-hover);
+    transition: border-color 0.15s ease;
+  }
+  .cmd-btn:hover {
+    border-color: var(--accent-teal);
+  }
+  .cmd-btn.primary {
+    background: var(--accent-teal);
+    color: #06201C;
+    border-color: var(--accent-teal);
+    font-weight: 600;
+  }
+</style>

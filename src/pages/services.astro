@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    name: 'DevOps & Cloud',
+    tags: ['aws', 'terraform', 'kubernetes', 'ci/cd'],
+    desc: 'Infrastructure-as-code, containerized deployments, and CI/CD pipelines — the core of what I do today.',
+    status: 'available',
+  },
+  {
+    name: 'Software Engineering',
+    tags: ['python', 'node.js', 'apis'],
+    desc: 'Backend services and automation tooling, built with the same testing discipline as infrastructure work.',
+    status: 'available',
+  },
+  {
+    name: 'Data Science',
+    tags: ['python', 'ml', 'analysis'],
+    desc: 'Applied ML and quantitative analysis, informed by building and validating trading strategies for FlinkTrade.',
+    status: 'roadmap',
+  },
+  {
+    name: 'AI Systems',
+    tags: ['llm', 'automation'],
+    desc: 'Practical AI integration — automation and tooling, not hype.',
+    status: 'roadmap',
+  },
+];
+---
+<BaseLayout title="Services — Nazmul">
+  <h1 class="page-title"><span class="prompt">$</span> ls services/</h1>
+  <p class="intro">
+    Kelenva is growing from a personal portfolio into a small multi-service
+    practice. DevOps and cloud work is available now; the rest is on the
+    roadmap as the practice grows.
+  </p>
+
+  <div class="services-grid">
+    {services.map((s) => (
+      <div class="service-card">
+        <div class="service-head">
+          <span class={`status-dot ${s.status === 'available' ? 'green' : 'amber'}`}></span>
+          <span class="service-name">{s.name}</span>
+          <span class="status-label">{s.status}</span>
+        </div>
+        <p class="service-desc">{s.desc}</p>
+        <div class="tag-row">
+          {s.tags.map((tag) => <span class="docker-tag">{tag}</span>)}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="cta-row">
+    <a href="mailto:hello@kelenva.com" class="cmd-btn primary">mail hello@kelenva.com</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .prompt {
+    color: var(--accent-teal);
+    margin-right: 0.5rem;
+  }
+  .intro {
+    color: var(--text-muted);
+    max-width: 60ch;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .service-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.4rem;
+  }
+  .service-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .status-dot.green { background: #4ADE80; }
+  .status-dot.amber { background: var(--accent-amber); }
+  .service-name {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .status-label {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .service-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .docker-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-teal);
+    background: rgba(94, 234, 212, 0.1);
+    border: 1px solid rgba(94, 234, 212, 0.25);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+  }
+  .cta-row {
+    display: flex;
+  }
+  .cmd-btn {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 0.6rem 1.1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    background: var(--bg-surface-hover);
+  }
+  .cmd-btn.primary {
+    background: var(--accent-teal);
+    color: #06201C;
+    border-color: var(--accent-teal);
+    font-weight: 600;
+  }
+</style>
