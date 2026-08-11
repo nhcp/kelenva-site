@@ -7,46 +7,125 @@ const allProjects = await getCollection('projects');
 const featured = allProjects.filter((p) => p.data.featured);
 ---
 <BaseLayout title="Nazmul — DevOps & Cloud Engineer">
-  <section class="hero">
-    <h1>Nazmul</h1>
-    <p class="subtitle">DevOps & Cloud Engineer — Docker · Kubernetes · Terraform · AWS</p>
-    <div class="cta">
-      <a href="/cv.pdf" class="btn primary">Download CV</a>
-      <a href="/projects" class="btn">View Projects</a>
-      <a href="https://github.com/nhcp" class="btn">GitHub</a>
+  <section class="terminal-hero">
+    <div class="terminal-bar">
+      <span class="dot red"></span>
+      <span class="dot amber"></span>
+      <span class="dot green"></span>
+      <span class="terminal-title">nazmul@kelenva:~</span>
+    </div>
+    <div class="terminal-body">
+      <p class="line"><span class="prompt">$</span> whoami</p>
+      <h1 class="typed-name">Nazmul<span class="cursor">▌</span></h1>
+      <p class="line comment"># DevOps &amp; Cloud Engineer — Docker · Kubernetes · Terraform · AWS</p>
+      <div class="cta-row">
+        <a href="/cv.pdf" class="cmd-btn primary">./download-cv.sh</a>
+        <a href="/projects" class="cmd-btn">cat projects/</a>
+        <a href="https://github.com/nhcp" class="cmd-btn">ssh github.com/nhcp</a>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2>Featured Projects</h2>
+  <section class="featured">
+    <h2 class="section-title"><span class="prompt">$</span> ls projects/ --featured</h2>
     <ProjectGrid projects={featured} />
   </section>
 </BaseLayout>
 
 <style>
-  .hero {
-    text-align: center;
-    padding: 4rem 1rem;
+  .terminal-hero {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-surface);
+    overflow: hidden;
+    margin-bottom: 3.5rem;
   }
-  .subtitle {
-    color: #555;
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    background: var(--bg-surface-hover);
+    border-bottom: 1px solid var(--border);
+  }
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+  .dot.red { background: var(--accent-red); }
+  .dot.amber { background: var(--accent-amber); }
+  .dot.green { background: #4ADE80; }
+  .terminal-title {
+    margin-left: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+  .terminal-body {
+    padding: 2.5rem 2rem 3rem;
+  }
+  .line {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+  }
+  .prompt {
+    color: var(--accent-teal);
+    margin-right: 0.5rem;
+  }
+  .typed-name {
+    font-size: 3rem;
+    margin: 0.25rem 0 1rem;
+    color: var(--text-primary);
+  }
+  .cursor {
+    color: var(--accent-teal);
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+  }
+  .comment {
+    color: var(--accent-amber);
+    opacity: 0.85;
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .cmd-btn {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 0.6rem 1.1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    background: var(--bg-surface-hover);
+    transition: border-color 0.15s ease;
+  }
+  .cmd-btn:hover {
+    border-color: var(--accent-teal);
+  }
+  .cmd-btn.primary {
+    background: var(--accent-teal);
+    color: #06201C;
+    border-color: var(--accent-teal);
+    font-weight: 600;
+  }
+  .section-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
     margin-bottom: 1.5rem;
   }
-  .cta {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-  .btn {
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    text-decoration: none;
-    color: inherit;
-  }
-  .btn.primary {
-    background: #111;
-    color: #fff;
-    border-color: #111;
+  @media (max-width: 600px) {
+    .typed-name { font-size: 2.1rem; }
+    .terminal-body { padding: 2rem 1.25rem 2.5rem; }
   }
 </style>

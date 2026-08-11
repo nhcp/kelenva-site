@@ -18,20 +18,21 @@ const { Content } = await project.render();
 ---
 <BaseLayout title={`${project.data.title} — Nazmul`}>
   <article>
-    <h1>{project.data.title}</h1>
+    <div class="detail-head">
+      <span class="status-dot"></span>
+      <h1>{project.data.title}</h1>
+    </div>
     <p class="summary">{project.data.summary}</p>
 
     <div class="meta">
       <div class="stack">
-        {project.data.stack.map((s) => <span class="chip">{s}</span>)}
+        {project.data.stack.map((s) => <span class="docker-tag">{s.toLowerCase().replace(/\s+/g, '-')}</span>)}
       </div>
       <div class="links">
-        {project.data.repoUrl && <a href={project.data.repoUrl}>Repository →</a>}
-        {project.data.demoUrl && <a href={project.data.demoUrl}>Live Demo →</a>}
+        {project.data.repoUrl && <a href={project.data.repoUrl}>repository →</a>}
+        {project.data.demoUrl && <a href={project.data.demoUrl}>live demo →</a>}
       </div>
     </div>
-
-    {project.data.coverImage && <img src={project.data.coverImage} alt={project.data.title} />}
 
     <div class="content">
       <Content />
@@ -40,11 +41,64 @@ const { Content } = await project.render();
 </BaseLayout>
 
 <style>
-  .summary { color: #555; font-size: 1.1rem; }
-  .meta { display: flex; justify-content: space-between; align-items: center; margin: 1.5rem 0; flex-wrap: wrap; gap: 1rem; }
-  .stack { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-  .chip { background: #f0f0f0; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.8rem; }
-  .links a { margin-left: 1rem; text-decoration: none; color: #0055cc; }
-  img { width: 100%; border-radius: 8px; margin: 1.5rem 0; }
-  .content { line-height: 1.7; }
+  .detail-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4ADE80;
+    flex-shrink: 0;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0;
+  }
+  .summary {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin: 0.75rem 0 1.5rem;
+  }
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .stack {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .docker-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-teal);
+    background: rgba(94, 234, 212, 0.1);
+    border: 1px solid rgba(94, 234, 212, 0.25);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+  }
+  .links a {
+    margin-left: 1.25rem;
+    text-decoration: none;
+    color: var(--accent-amber);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .links a:first-child {
+    margin-left: 0;
+  }
+  .content {
+    line-height: 1.75;
+    color: var(--text-primary);
+    max-width: 65ch;
+  }
 </style>

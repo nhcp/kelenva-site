@@ -4,16 +4,17 @@ interface Props {
   summary: string;
   tags: string[];
   slug: string;
-  coverImage?: string;
 }
-const { title, summary, tags, slug, coverImage } = Astro.props;
+const { title, summary, tags, slug } = Astro.props;
 ---
 <a href={`/projects/${slug}`} class="project-card">
-  {coverImage && <img src={coverImage} alt={title} />}
-  <h3>{title}</h3>
-  <p>{summary}</p>
-  <div class="tags">
-    {tags.map((tag) => <span class="tag">{tag}</span>)}
+  <div class="card-head">
+    <span class="status-dot"></span>
+    <span class="card-title">{title}</span>
+  </div>
+  <p class="card-summary">{summary}</p>
+  <div class="tag-row">
+    {tags.map((tag) => <span class="docker-tag">{tag.toLowerCase().replace(/\s+/g, '-')}</span>)}
   </div>
 </a>
 
@@ -22,30 +23,52 @@ const { title, summary, tags, slug, coverImage } = Astro.props;
     display: block;
     text-decoration: none;
     color: inherit;
-    border: 1px solid #e2e2e2;
-    border-radius: 8px;
-    padding: 1.25rem;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.4rem;
+    transition: border-color 0.15s ease, transform 0.15s ease;
   }
   .project-card:hover {
+    border-color: var(--accent-teal);
     transform: translateY(-2px);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
   }
-  .project-card img {
-    width: 100%;
-    border-radius: 6px;
-    margin-bottom: 0.75rem;
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
   }
-  .tags {
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4ADE80;
+    flex-shrink: 0;
+  }
+  .card-title {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+  .card-summary {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+  }
+  .tag-row {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin-top: 0.75rem;
   }
-  .tag {
-    font-size: 0.75rem;
-    background: #f0f0f0;
-    padding: 0.2rem 0.6rem;
+  .docker-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-teal);
+    background: rgba(94, 234, 212, 0.1);
+    border: 1px solid rgba(94, 234, 212, 0.25);
+    padding: 0.2rem 0.55rem;
     border-radius: 999px;
   }
 </style>

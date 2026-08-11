@@ -17,7 +17,6 @@ const sorted = projects.sort(
       summary={project.data.summary}
       tags={project.data.tags}
       slug={project.slug}
-      coverImage={project.data.coverImage}
     />
   ))}
 </div>
@@ -26,6 +25,6 @@ const sorted = projects.sort(
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 </style>

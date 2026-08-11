@@ -6,6 +6,17 @@ import { getCollection } from 'astro:content';
 const allProjects = await getCollection('projects');
 ---
 <BaseLayout title="Projects — Nazmul">
-  <h1>Projects</h1>
+  <h1 class="page-title"><span class="prompt">$</span> ls projects/</h1>
   <ProjectGrid projects={allProjects} />
 </BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .prompt {
+    color: var(--accent-teal);
+    margin-right: 0.5rem;
+  }
+</style>

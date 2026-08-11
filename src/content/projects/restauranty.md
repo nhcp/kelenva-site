@@ -5,7 +5,6 @@ tags: ["Kubernetes", "AWS", "EKS", "CI/CD", "Microservices"]
 stack: ["Node.js", "React", "MongoDB", "Docker", "Terraform", "GitHub Actions"]
 repoUrl: "https://github.com/nhcp/devops.restauranty"
 demoUrl: "https://restauranty.kelenva.com"
-coverImage: "/images/projects/restauranty.png"
 date: 2026-08-10
 featured: true
 ---
