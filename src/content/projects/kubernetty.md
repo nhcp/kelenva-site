@@ -5,6 +5,7 @@ tags: ["Kubernetes", "High Availability", "MySQL", "nginx", "AWS EC2"]
 stack: ["k3s", "nginx", "MySQL", "AWS EC2", "Terraform"]
 date: 2026-08-13
 featured: true
+repoUrl: "https://github.com/nhcp/devops.restauranty/blob/main/docs/kubernetty-demo-guide.md"
 ---
 Restauranty proves I can deploy a real application onto Kubernetes.
 Kubernetty proves the other half — that I understand what a managed control
