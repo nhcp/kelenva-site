@@ -3,16 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="About — Nazmul">
   <h1 class="page-title"><span class="prompt">$</span> cat about.md</h1>
-
   <div class="about-body">
     <p>
-      I'm Nazmul, based in Bavaria, Germany, working toward a role as a
-      DevOps or Cloud Engineer. I'm currently completing an Ironhack DevOps
-      bootcamp covering Linux, Docker, Terraform, Ansible, and AWS —
-      building and deploying real infrastructure rather than just studying
-      it in isolation.
+      I'm Nazmul, based in Bavaria, Germany, working as a DevOps or Cloud
+      Engineer. I completed an Ironhack DevOps bootcamp covering Linux,
+      Docker, Terraform, Ansible, and AWS — building and deploying real
+      infrastructure rather than just studying it in isolation.
     </p>
-
     <p>
       Outside coursework, I build and operate
       <a href="https://flinktrade.com">FlinkTrade</a>, a personal algorithmic
@@ -25,21 +22,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       discipline matters more to me than any single result: it's the same
       instinct that makes good infrastructure reliable.
     </p>
-
     <p>
       This site itself is part of that same practice: an Astro static
       site, containerized with Docker, deployed via GitHub Actions to a
       Traefik-fronted Hetzner box, isolated from my production trading
-      infrastructure by design.
+      infrastructure by design. The same box also runs
+      <a href="/projects/restauranty">Restauranty</a>, my Ironhack final
+      project, permanently — alongside its own monitoring stack and a
+      public <a href="https://status.kelenva.com/status/kelenva">status page</a>.
     </p>
-
+    <p>
+      Restauranty was also deployed the harder way first, on AWS EKS, with
+      Terraform-managed infrastructure, Kubernetes NetworkPolicies, and
+      automatic TLS, to prove the cloud-native side before building its
+      permanent, self-hosted home. Separately, I built and tore down a
+      small highly-available Kubernetes cluster from raw EC2 instances
+      (<a href="/projects/kubernetty">Kubernetty</a>), to understand what a
+      managed control plane like EKS is actually doing underneath —
+      including the part most people skip: I stopped a control-plane node
+      with a real workload running, and confirmed the cluster kept working.
+    </p>
     <h2 class="section-heading"># currently</h2>
     <ul class="status-list">
-      <li><span class="status-dot"></span>Finishing the Ironhack DevOps bootcamp</li>
-      <li><span class="status-dot"></span>Building out this portfolio and its project writeups</li>
+      <li><span class="status-dot"></span>Completed the Ironhack DevOps bootcamp</li>
+      <li><span class="status-dot"></span>Operating Restauranty in production on two separate deployments</li>
       <li><span class="status-dot"></span>Job-hunting for DevOps / Cloud Engineer roles in Germany</li>
     </ul>
-
     <div class="cta-row">
       <a href="/cv.pdf" class="cmd-btn primary">./download-cv.sh</a>
       <a href="https://github.com/nhcp" class="cmd-btn">ssh github.com/nhcp</a>
