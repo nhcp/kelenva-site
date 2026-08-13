@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const links = [
+  {
+    name: 'Restauranty — Live Demo',
+    url: 'https://restauranty.kelenva.com',
+    desc: 'Microservices restaurant platform, self-hosted on this same server.',
+  },
+  {
+    name: 'Platform Status',
+    url: 'https://status.kelenva.com/status/kelenva',
+    desc: 'Live uptime monitoring for every service running on this domain.',
+  },
+  {
+    name: 'Monitoring Dashboard',
+    url: 'https://grafana.kelenva.com',
+    desc: 'Real-time metrics — request rates, error rates, DB connectivity.',
+  },
+];
+---
+<BaseLayout title="Platform — Nazmul" description="What's actually running on kelenva.com">
+  <h1 class="page-title"><span class="prompt">$</span> cat platform.md</h1>
+
+  <div class="platform-body">
+    <p>
+      kelenva.com isn't just a portfolio — it's a small, self-hosted platform
+      I built and operate myself. Everything below is a real, live link, not
+      a screenshot.
+    </p>
+
+    <div class="link-list">
+      {links.map((l) => (
+        <a href={l.url} class="link-card" target="_blank" rel="noopener">
+          <div class="link-head">
+            <span class="status-dot"></span>
+            <span class="link-name">{l.name}</span>
+            <span class="link-arrow">→</span>
+          </div>
+          <p class="link-desc">{l.desc}</p>
+        </a>
+      ))}
+    </div>
+
+    <h2 class="section-heading"># infrastructure</h2>
+    <ul class="status-list">
+      <li><span class="status-dot"></span>Hetzner Cloud VPS, self-managed</li>
+      <li><span class="status-dot"></span>Traefik reverse proxy, Cloudflare Origin Certificate</li>
+      <li><span class="status-dot"></span>Docker Compose, deployed via GitHub Actions CI/CD</li>
+      <li><span class="status-dot"></span>Automated daily database backups, restore-tested</li>
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .prompt {
+    color: var(--accent-teal);
+    margin-right: 0.5rem;
+  }
+  .platform-body {
+    max-width: 65ch;
+    line-height: 1.75;
+  }
+  .link-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .link-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.4rem;
+    transition: border-color 0.15s ease;
+  }
+  .link-card:hover {
+    border-color: var(--accent-teal);
+  }
+  .link-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .link-name {
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
+  .link-arrow {
+    margin-left: auto;
+    color: var(--accent-teal);
+  }
+  .link-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0.4rem 0 0;
+  }
+  .section-heading {
+    font-size: 1rem;
+    color: var(--accent-teal);
+    margin-top: 2.5rem;
+  }
+  .status-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+  .status-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ADE80;
+    flex-shrink: 0;
+  }
+</style>
